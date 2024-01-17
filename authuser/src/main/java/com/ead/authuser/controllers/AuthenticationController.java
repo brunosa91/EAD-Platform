@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class AuthenticationController {
     UserService userService;
     @PostMapping(value = "/signup")
     public ResponseEntity<Object> registeUser(@RequestBody
+                                                  @Validated(UserDto.UserView.RegistrationPost.class)
                                                   @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto){
         if(userService.existByUsername(userDto.getUserName())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("error: Username is Already Taken");
