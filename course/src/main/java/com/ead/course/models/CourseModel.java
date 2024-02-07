@@ -44,6 +44,6 @@ public class CourseModel implements Serializable {
     @Column(nullable = false)
     private UUID userIntructor;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private Set<ModuleModel> modules;
 }
