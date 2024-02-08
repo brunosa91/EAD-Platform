@@ -19,9 +19,5 @@ w
 Gauthuser/src/main/java/com/ead/authuser/controllers/UserController.java,1\f\1f3cfc237b3528103d4770f6ff7b682d8cee98f6
 p
 @authuser/src/main/java/com/ead/authuser/service/UserService.java,3\5\35f497bd09ca6e862a574c08408a28444bf6154d
->
-course/pom.xml,f\3\f304e1be980d2d181f25492966731f93804adf3c
-@
-authuser/pom.xml,0\d\0d161aa83d8626219e98b501397b16dbba9aa2af
 y
 Iauthuser/src/main/java/com/ead/authuser/service/impl/UserServiceImpl.java,1\9\19fc908648af76a70c863948bc4197ecfbffcbd3

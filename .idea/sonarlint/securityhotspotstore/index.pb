@@ -17,11 +17,7 @@ s
 Cauthuser/src/main/java/com/ead/authuser/configs/ResolverConfig.java,0\0\00b00be683ca1a9af87e85f110a6c20ce39967b1
 y
 Iauthuser/src/main/java/com/ead/authuser/service/impl/UserServiceImpl.java,1\9\19fc908648af76a70c863948bc4197ecfbffcbd3
-@
-authuser/pom.xml,0\d\0d161aa83d8626219e98b501397b16dbba9aa2af
 x
 Hauthuser/src/main/java/com/ead/authuser/repositories/UserRepository.java,f\0\f0b88759fc499346c65720aacb17a9c2f2f4001e
 
 Qauthuser/src/main/java/com/ead/authuser/controllers/AuthenticationController.java,1\8\188d6db6ac0e0bbbf4b90c17673b143dea0e63ae
->
-course/pom.xml,f\3\f304e1be980d2d181f25492966731f93804adf3c
