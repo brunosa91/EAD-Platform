@@ -6,7 +6,7 @@ import com.ead.course.models.ModuleModel;
 import com.ead.course.repositories.CourseRepository;
 import com.ead.course.repositories.LessonRepository;
 import com.ead.course.repositories.ModuleRepository;
-import com.ead.course.services.CouserService;
+import com.ead.course.services.CourseService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class CourseServiceImpl implements CouserService {
+public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseRepository courseRepository;
 
