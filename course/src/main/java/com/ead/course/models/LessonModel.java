@@ -27,7 +27,7 @@ public class LessonModel implements Serializable {
     @Column(nullable = false, length = 250)
     private String description;
     @Column(nullable = false)
-    private String videosUrl;
+    private String videoUrl;
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime creationDate;
