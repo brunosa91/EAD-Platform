@@ -7,6 +7,9 @@ import com.ead.course.repositories.ModuleRepository;
 import com.ead.course.services.ModuleService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,14 +43,13 @@ public class ModuleServiceImpl implements ModuleService {
     public Optional<ModuleModel> findModuleIntoCourse(UUID courseId, UUID moduleId) {
         return moduleRepository.findModuleIntoCourse(courseId,moduleId);
     }
-
-    @Override
-    public List<ModuleModel> findAllByCourse(UUID courseId) {
-        return moduleRepository.findAllModulesIntoCourse(courseId);
-    }
-
     @Override
     public Optional<ModuleModel> findById(UUID moduleId) {
         return moduleRepository.findById(moduleId);
+    }
+
+    @Override
+    public Page<ModuleModel> findAllByCourse(Specification<ModuleModel> spec, Pageable pageable) {
+        return moduleRepository.findAll(spec,pageable);
     }
 }
