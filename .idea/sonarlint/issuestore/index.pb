@@ -19,8 +19,6 @@ o
 ?course/src/main/java/com/ead/course/services/CourseService.java,c\a\ca98a614e1464c9063175a7e388678145be17b6f
 v
 Fcourse/src/main/java/com/ead/course/repositories/CourseRepository.java,6\0\60d4492950c6458c3d68d5aeebaf1405002b38a8
-w
-Gauthuser/src/main/java/com/ead/authuser/controllers/UserController.java,1\f\1f3cfc237b3528103d4770f6ff7b682d8cee98f6
 Å
 Qauthuser/src/main/java/com/ead/authuser/specifications/SpecificationTemplate.java,9\a\9ac991c7bd1b1030557d5009f2f83fb2fc5d657d
 u
