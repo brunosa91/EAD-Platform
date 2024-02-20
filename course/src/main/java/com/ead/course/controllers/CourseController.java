@@ -14,9 +14,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -63,13 +63,28 @@ public class CourseController {
 
         return ResponseEntity.status(HttpStatus.OK).body(courseService.save(courseModel));
     }
+
     @GetMapping
     public ResponseEntity<Page<CourseModel>> getAllCourses(SpecificationTemplate.CourseSpec spec,
-                                                           @PageableDefault(page = 0,size = 10,sort = "courserId",direction = Sort.Direction.ASC)Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec,pageable));
+                                                           @PageableDefault(
+                                                                   page = 0,
+                                                                   size = 10,
+                                                                   sort = "courserId",
+                                                                   direction = Sort.Direction.ASC)
+                                                           Pageable pageable,
+                                                           @RequestParam(required = false) UUID userId) {
+        if (userId != null) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(courseService
+                            .findAll(SpecificationTemplate.courseUserId(userId).and(spec), pageable));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
+
+        }
     }
+
     @GetMapping("/{courseId}")
-    public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId){
+    public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId) {
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
         if (!courseModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course Not Found");
