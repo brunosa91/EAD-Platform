@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,10 +36,18 @@ public class UserController {
     public ResponseEntity<Page<UserModel>> getAllUsers(
             SpecificationTemplate.UserSpec spec,
             @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC)
-            Pageable pageable) {
-        Page<UserModel> userModelPage = userService.findAll(spec,pageable);
-        if (!userModelPage.isEmpty()){
-            for (UserModel user : userModelPage.toList()){
+            Pageable pageable, @RequestParam(required = false) UUID courseId) {
+        Page<UserModel> userModelPage = null;
+        if (courseId != null) {
+            userModelPage = userService.findAll(SpecificationTemplate.userCourseId(courseId).and(spec)
+                    , pageable);
+        } else {
+            userModelPage = userService.findAll(spec, pageable);
+
+        }
+
+        if (!userModelPage.isEmpty()) {
+            for (UserModel user : userModelPage.toList()) {
                 user.add(linkTo(methodOn(UserController.class)
                         .getOneUser(user.getUserId())).withSelfRel());
             }
@@ -60,15 +67,15 @@ public class UserController {
 
     @DeleteMapping(value = "/{userid}")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "userid") UUID userId) {
-        log.debug("DELETE deleteUser userID received {} ",userId );
+        log.debug("DELETE deleteUser userID received {} ", userId);
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User Not Found");
 
         } else {
             userService.delete(userModelOptional.get());
-            log.debug("DELETE deleteUser userID deleted {} ",userId );
-            log.info("User deleted successfully userId {} ",userId );
+            log.debug("DELETE deleteUser userID deleted {} ", userId);
+            log.info("User deleted successfully userId {} ", userId);
             return ResponseEntity.status(HttpStatus.OK).body("User deleted sucess");
         }
     }
@@ -78,7 +85,7 @@ public class UserController {
                                              @RequestBody
                                              @Validated(UserDto.UserView.UserPut.class)
                                              @JsonView(UserDto.UserView.UserPut.class) UserDto userDto) {
-        log.debug("PUT updateUser userDto received {} ",userDto.toString() );
+        log.debug("PUT updateUser userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User Not Found");
@@ -89,8 +96,8 @@ public class UserController {
             userModel.setCpf(userDto.getCpf());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
             userService.save(userModel);
-            log.debug("PUT updateUser userId saved {} ",userModel.getUserId() );
-            log.info("User updated successfully userId {} ",userModel.getUserId() );
+            log.debug("PUT updateUser userId saved {} ", userModel.getUserId());
+            log.info("User updated successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(userModel);
         }
     }

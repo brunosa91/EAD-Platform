@@ -17,10 +17,6 @@ o
 ?course/src/main/java/com/ead/course/services/CourseService.java,c\a\ca98a614e1464c9063175a7e388678145be17b6f
 v
 Fcourse/src/main/java/com/ead/course/repositories/CourseRepository.java,6\0\60d4492950c6458c3d68d5aeebaf1405002b38a8
-Å
-Qauthuser/src/main/java/com/ead/authuser/specifications/SpecificationTemplate.java,9\a\9ac991c7bd1b1030557d5009f2f83fb2fc5d657d
-u
-Ecourse/src/main/java/com/ead/course/controllers/CourseController.java,3\7\371cd057dcfb6bb76b920460917765bb98f8d608
 g
 7course/src/main/java/com/ead/course/dtos/CourseDto.java,0\5\05006b012b22e3287624752dbe4bdd91fc5b6bbd
 x
